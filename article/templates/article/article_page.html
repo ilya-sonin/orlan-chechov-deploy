@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+{{ page.title }}
+{{ page.preview_text }}
+{{ page.body|richtext }}
+{{ page.date }}
+
+<form action="/phone/" method="post">{% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Подтверидить</button>
+</form>
+
+{% endblock content %}

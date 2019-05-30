@@ -1,0 +1,33 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<section class="gallery-area section-padding-both">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-top text-center">
+                    <h2>{{ page.gallery_title }}</h2>
+                    {{ page.gallery_description|richtext }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="gallery-slider owl-carousel">
+                    {% for gall in gallery %}
+                    {% for img in gall.gallery_images.all %}
+                    <div class="single-slide">
+                        <div class="slide-img">
+                            {% image img.image max-273x362 class="img-fluid" %}    
+                            <div class="hover-state">
+                                <a href="{{ gall.url }}"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

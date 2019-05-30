@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
+{% load static %}
+
+{% block content %}
+
+{% head %}
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ page.title }}</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="about.html">Об автошколе</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'about_orlan_docs/components/head_info.html' %}
+
+{% footer %}
+{% endblock content %}

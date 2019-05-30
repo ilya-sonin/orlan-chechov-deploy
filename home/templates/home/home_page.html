@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
+{% load wagtailcore_tags banners %}
+
+{% block content %}
+
+{% head %}
+
+{% include 'home/components/banner.html' %}
+{% include 'home/components/welcome.html' %}
+{% include 'home/components/feature.html' %}
+{% include 'home/components/gallery.html' %}
+{% include 'home/components/comments.html' %}
+{% include 'home/components/whatsayforme.html' %}
+
+{% banners %}
+{% footer %}
+
+{% endblock content %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/form.js' %}"></script>
+{% endblock %}

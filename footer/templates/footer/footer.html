@@ -1,0 +1,68 @@
+{% load wagtailcore_tags %}
+<footer class="footer-area section-padding">
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 offset-xl-1 col-lg-3 col-md-6">
+                    <div class="single-widge-home mb-5 mb-lg-0">
+                        <h3 class="mb-4">Связаться с нами</h3>
+                        <div class="d-flex">
+                            <div class="into-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="info-text">
+                                {{ contact.geo_description|richtext }}
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="into-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-text">
+                                {{ contact.phone|richtext }}
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="into-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                {{ contact.email|richtext }}
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-xl-5 offset-xl-1 col-lg-6 col-md-12">
+                    <div class="single-widget-home mb-5 mb-lg-0">
+                        <h3 class="mb-4">Перезвоним вам</h3>
+                        <p class="mb-4">Напишите нам свой номер телефона и мы вам перезвоним!</p>  
+                        <form name="phone-form" id="phone-form">{% csrf_token %}
+                            <input name="phone" type="text" placeholder="Введите ваш номер" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите ваш номер'" required>
+                            <button class="template-btn">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <span>
+                        Copyright &copy;Orlan-Chechov - <script>document.write(new Date().getFullYear());</script><br> Все права защищены
+                    </span>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#"><i class="fab fa-vk"></i></a></li>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

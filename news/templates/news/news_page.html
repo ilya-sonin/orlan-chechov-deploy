@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+привет товарищи. Новостная страница
+
+{% for art in article %}
+    <h1>{{ art.title }}</h1>
+    <p>{{ art.preview_text }}</p>
+    {{ art.body|richtext }}
+    <p>{{ art.date }}</p>
+{% endfor %}
+<form action="/phone/" method="post">{% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Подтверидить</button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block extra_js %}
+<script src="{% static 'js/contact_form.js' %}"></script>
+{% endblock extra_js %}
+
+{% block content %}
+{% head %}
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ page.title }}</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="{{ page.url }}">{{ page.title }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-form section-padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 mb-5 mb-lg-0">
+                <div class="d-flex">
+                    <div class="into-icon">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <div class="info-text">
+                        {{ page.geo_description|richtext }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="into-icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="info-text">
+                        {{ page.phone|richtext }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="into-icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        {{ page.email|richtext }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <form id="contact-form" name="contact-form">{% csrf_token %}
+                    <div class="left">
+                        <input name="name" type="text" placeholder="Введите ваше имя" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите ваше имя'" required>
+                        <input name="email" type="email" placeholder="Введите ваш Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите ваш Email'" required>
+                        <input name="number" type="text" placeholder="Введите номер телефона" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите тему вопроса'" required>
+                    </div>
+                    <div class="right">
+                        <textarea name="message" cols="20" rows="7"  placeholder="Подробно опишите вопрос" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Подробно опишите вопрос'" required></textarea>
+                    </div>
+                    <button class="template-btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% footer %}
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+{% head %}
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ page.title_page_h1 }}</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="{{ page.url }}">{{ page.title }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="feature-area section-padding">
+    <div class="container">
+        <div class="autopark section-padding-bottom">
+            <div class="row">
+                {% for gal in page.gallery_images.all %}
+                    <div class="col-md-4">
+                        {% image gal.image min-263x180 as gal_image %}
+                        <div class="single-gallery-item" style="background: url('{{ gal_image.url }}');"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% footer %}
+{% endblock content %}

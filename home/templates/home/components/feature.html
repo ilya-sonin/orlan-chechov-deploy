@@ -1,0 +1,27 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<section class="feature-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-top text-center">
+                    <h2>{{ page.feature_title_text }}</h2>
+                    {{ page.feature_mini_description|richtext }}
+                </div>
+            </div>
+        </div>            
+        <div class="row">
+            {% for f in page.featured.all %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding">
+                    {% image f.image width-77 as feature_img %}
+                    <img src="{{ feature_img.url }}">
+                    <h3>{{ f.title }}</h3>
+                    {{ f.description|richtext }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<section class="welcome-area section-padding" id="general-information">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 align-self-start">
+                {% image page.first_image max-418x554 as img_first %}
+                <div class="welcome-img">
+                    <img src="{{ img_first.url }}" alt="">
+                </div>
+                <div class="welcome-img">
+                    {% image page.second_image max-418x554 as img_second %}
+                    <img src="{{ img_second.url }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="welcome-text mt-5 mt-lg-0">
+                    <h2>Основные сведения</h2>
+                    {% for star in page.star_info.all %}
+                    <h3>{{ star.title }}</h3>
+                    {{ star.description|richtext }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

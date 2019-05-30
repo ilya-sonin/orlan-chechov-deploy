@@ -1,0 +1,22 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<section class="welcome-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 align-self-center">
+                <div class="welcome-img">
+                    {% image page.mini_about_image max-554x418 as about_img %}
+                    <img src="{{ about_img.url }}">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="welcome-text mt-5 mt-lg-0">
+                    <h2>{{ page.mini_about_title }}</h2>
+                    {{ page.mini_about_description|richtext }}
+                    <a href="/#general-information" class="template-btn mt-3">{{ page.mini_about_button_text }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

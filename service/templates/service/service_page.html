@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block content %}
+{% head %}
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ page.title }}</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="{{ page.url }}">{{ page }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="service-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-top text-center">
+                    <h2>{{ page.selection_title }}</h2>
+                    {{ page.selection_description|richtext }}
+                </div>
+            </div>
+        </div>            
+        <div class="row">
+            {% for serv in services %}
+            <div class="col-lg-4 col-md-6">
+                <a href="service-certain.html">
+                    <div class="single-feature text-center item-padding mt-4 mt-lg-0">                 
+                        <img src="images/feature2.png" alt="Второе преимущество">
+                        <h3>Категория B</h3>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% footer %}
+{% endblock content %}
