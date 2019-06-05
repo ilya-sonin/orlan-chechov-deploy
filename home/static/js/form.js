@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#feedback-form1').submit(function(){
         $.ajax({
             type: "POST",
-            url: "form/parent_form/",
+            url: "/form/parent_form/",
             data: $(this).serialize(),
         }).done(function() {
             alert('Форма отправлена')

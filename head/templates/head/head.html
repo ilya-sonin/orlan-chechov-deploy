@@ -44,15 +44,16 @@
                                     <li><a href="aboutus/#vacancies">Вакантные места для приема(перевода)</a></li>                            
                                 </ul>
                             </li>
+                            <li><a href="news/">Новости</a></li>
                             {% for m in menu %}
                             {% if m.get_children %}
+                            <li><a href="{{ m.url }}" class="menu-dropdown">{{ m }}</a>
+                                <ul>
                             {% for child in m.get_children %}
-                                <li><a href="{{ m.url }}" class="menu-dropdown">{{ m }}</a>
-                                    <ul>
-                                        <li><a href="{{ child.url }}">{{ child }}</a></li>
-                                    </ul>
-                                </li>
+                                    <li><a href="{{ child.url }}">{{ child }}</a></li>
                             {% endfor %}
+                                </ul>
+                            </li>
                             {% else %}
                                 <li><a href="{{ m.url }}">{{ m }}</a></li>
                             {% endif %}

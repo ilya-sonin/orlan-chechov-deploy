@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#phone-form').submit(function(){
         $.ajax({
             type: "POST",
-            url: "form/phone-form/",
+            url: "/form/phone-form/",
             data: $(this).serialize(),
         }).done(function() {
             alert('Форма отправлена')

@@ -8,6 +8,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from modelcluster.fields import ParentalKey
 
 class ClassesPage(Page):
+    show_in_menus_default = True
+    
     image_classes = models.ForeignKey('wagtailimages.Image',
                                       verbose_name="Картинка для 'Занятия в школе'",
                                       null=True,

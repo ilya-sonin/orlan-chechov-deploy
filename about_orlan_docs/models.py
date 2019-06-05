@@ -16,16 +16,10 @@ class AboutDocsOrlan(Page):
                                     on_delete=models.SET_NULL,
                                     related_name='+',
                                     help_text="Изображение должно быть в разрешении ")
-    second_image = models.ForeignKey('wagtailimages.Image',
-                                      verbose_name='Вторая картинка в селекции основные сведения',
-                                      null=True,
-                                      blank=True,
-                                      on_delete=models.SET_NULL,
-                                      related_name='+',
-                                      help_text="Изображение должно быть в разрешении ")
+
+    
     content_panels = Page.content_panels + [
         ImageChooserPanel('first_image'),
-        ImageChooserPanel('second_image'),
         InlinePanel('star_info', label="Создание основное сведение"),
     ]
 

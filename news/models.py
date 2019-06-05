@@ -5,7 +5,6 @@ from wagtail.core.models import Page
 from article.models import ArticlePage
 
 class NewsPage(Page):
-    show_in_menus_default = True
 
     class Meta:
         verbose_name = "Добавить новую страницу новостей (Не трогать!)"

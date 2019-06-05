@@ -1,18 +1,50 @@
 {% extends "base.html" %}
 {% load static %}
 {% load wagtailcore_tags %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
+{% load wagtailcore_tags %}
 
 {% block content %}
 
-{{ page.title }}
-{{ page.preview_text }}
-{{ page.body|richtext }}
-{{ page.date }}
+{% head %}
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ page.title }}</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="{{ page.url }}">{{ page }}</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-<form action="/phone/" method="post">{% csrf_token %}
-    {{ form.as_p }}
+<section class="blog_area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post row">
 
-    <button type="submit">Подтверидить</button>
-</form>
+                    <div class="col-lg-3  col-md-3">
+                        <div class="blog_info">
+                            <div class="post_tag">
+                                <a class="active" href="#">Новость</a>
+                            </div>
+                            <ul class="blog_meta list">
+                                <li><a href="#">{{ page.date }}<i class="far fa-calendar"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 blog_details">
+                        {{ page.body|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% footer %}
 
 {% endblock content %}

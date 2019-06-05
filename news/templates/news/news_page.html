@@ -1,21 +1,89 @@
 {% extends "base.html" %}
 {% load static %}
 {% load wagtailcore_tags %}
+{% load wagtailcore_tags head %}
+{% load wagtailcore_tags footer %}
 
 {% block content %}
 
-привет товарищи. Новостная страница
+{% head %}
 
-{% for art in article %}
+
+<!-- {% for art in article %}
     <h1>{{ art.title }}</h1>
     <p>{{ art.preview_text }}</p>
     {{ art.body|richtext }}
     <p>{{ art.date }}</p>
-{% endfor %}
-<form action="/phone/" method="post">{% csrf_token %}
-    {{ form.as_p }}
+{% endfor %} -->
 
-    <button type="submit">Подтверидить</button>
-</form>
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Новостная лента</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="{{ page.url }}">{{ page }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog_area section-padding-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                    {% for art in article %}
+                    <article class="row blog_item">
+                       <div class="col-md-3">
+                           <div class="blog_info">
+                                <div class="post_tag">
+                                    <a class="active" href="/news/">Новость</a>
+                                </div>
+                                <ul class="blog_meta list">
+                                    <li><a href="{{ art.url }}">{{ art.date }}<i class="far fa-calendar"></i></a></li>
+                                </ul>
+                            </div>
+                       </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="images/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="{{ art.url }}"><h4>{{ art.title }}</h4></a>
+                                    {{ art.preview_text|richtext }}
+                                    <a href="{{ art.url }}" class="template-btn">Посмотреть</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                    <!-- <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">
+                                        <span class="fa fa-angle-left"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+                            <li class="page-item"><a href="#" class="page-link">09</a></li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">
+                                        <span class="fa fa-angle-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% footer %}
 
 {% endblock content %}

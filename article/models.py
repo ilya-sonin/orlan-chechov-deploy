@@ -8,10 +8,9 @@ from wagtail.admin.edit_handlers import FieldPanel
 
 
 class ArticlePage(Page):
-    preview_text = models.CharField("Превью текст",
+    preview_text = RichTextField("Превью текст",
                                     help_text="Сокращенное содержание статьи\n" \
                                                 "Текст который отображается на главной странице",
-                                    max_length=50,
                                     default="text")
     date = models.DateField("Дата поста", default=datetime.date.today)
     body = RichTextField("Текст статьи", help_text="Пишите текст статьи", default="text")
