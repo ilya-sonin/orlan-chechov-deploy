@@ -36,20 +36,18 @@ class HomePage(Page):
     mini_about_button_text = models.CharField("Введите текст кнопки в селекции о нас", 
                                               max_length=200,
                                               default="Узнать подробней")
-    feature_title_text = models.CharField("Заголовок для преймуществ",
-                                          help_text="Введите заголовлок по умолчанию наши преймущества", 
+    feature_title_text = models.CharField("Заголовок для преимуществ",
+                                          help_text="Введите заголовлок по умолчанию наши преимущества", 
                                           max_length=200,
                                           default="Заголовок")
-    feature_mini_description = RichTextField("Описание преймуществ",
+    feature_mini_description = RichTextField("Описание преимуществ",
                                             help_text="Введите небольшое описание для преймуществ",
                                             default="Описание")
     gallery_title = models.CharField("Название селекции фотогаллерея", 
                                      max_length=200,
                                      default="Фотогаллерея")
-    gallery_description = RichTextField('Описание селекции фотогаллерея', default="Описание")
     what_they_say_about_us_title = models.CharField("Селекция 'что говорят о нас' заголовок", 
                                                     max_length=200, default="Заголовок селекции")
-    what_they_say_about_us_description = RichTextField("Селекция 'что говорят о нас' описание", default="Описание")
     first_feedback_image = models.ForeignKey('wagtailimages.Image',
                                       verbose_name='Изображение первого человека, который оставил отзыв',
                                       null=True,
@@ -83,11 +81,9 @@ class HomePage(Page):
         FieldPanel('mini_about_button_text'),
         FieldPanel('feature_title_text'),
         FieldPanel('feature_mini_description'),
-        InlinePanel('featured', label="преймущество."),
+        InlinePanel('featured', label="Добавить преимущество"),
         FieldPanel('gallery_title'),
-        FieldPanel('gallery_description'),
         FieldPanel('what_they_say_about_us_title'),
-        FieldPanel('what_they_say_about_us_description'),
         FieldPanel('first_feedback_name'),
         ImageChooserPanel('first_feedback_image'),
         FieldPanel('first_feedback_description'),
@@ -113,14 +109,14 @@ class HomePage(Page):
 class Featured(Orderable):
     page = ParentalKey(HomePage, related_name="featured")
     image = models.ForeignKey('wagtailimages.Image',
-                              verbose_name='Картинка преймущества',
+                              verbose_name='Картинка преимущества',
                               null=True,
                               blank=True,
                               on_delete=models.SET_NULL,
                               related_name='+',
                               help_text="Изображение должно быть в размером 77 на 77")
-    title = models.CharField("Заголовок преймущества", max_length=200, default="Заголовок")
-    description = RichTextField("Описание преймущества", default="Описание")
+    title = models.CharField("Заголовок преимущества", max_length=200, default="Заголовок")
+    description = RichTextField("Описание преимущества", default="Описание")
 
     panels = [
         ImageChooserPanel('image'),
