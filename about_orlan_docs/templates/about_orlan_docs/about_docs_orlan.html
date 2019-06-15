@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags head %}
+{% load wagtailcore_tags %}
 {% load wagtailcore_tags footer %}
 {% load static %}
 
@@ -16,7 +17,69 @@
         </div>
     </div>
 </section>
-
+<section class="welcome-area section-padding" id="general-information">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="right_sidebar">
+                    <aside class="single_sidebar_widget">
+                        <div class="media post_item">
+                            <a href="structure/" class="template-btn mt-3" target="_blank">Следующая</a>
+                        </div>
+                    </aside>
+                    <aside class="single_sidebar_widget all_widgets">
+                        <div class="br"></div>
+                        <ul>
+                            <li class="media post_item">
+                                <a href="structure/" class="template-btn mt-3 short-button" target="_blank">Структура</a>
+                            </li>
+                            <li class="media post_item">
+                                <a href="about_documents.html" class="template-btn mt-3 short-button" target="_blank">Документы</a>
+                            </li>
+                            <li class="media post_item">
+                                <a href="about_management.html" class="template-btn mt-3 long-button" target="_blank">Руководство и педагогический состав</a>
+                            </li>
+                            <li class="media post_item">
+                                <a href="about_transport.html" class="template-btn mt-3 long-button" target="_blank">Материально-техническое обеспечение</a>
+                            </li>
+                            <li class="media post_item">
+                                <a href="about_paid.html" class="template-btn mt-3 long-button" target="_blank">Платные образовательные услуги</a>
+                            </li>
+                            <li class="media post_item">
+                                <a href="about_activity.html" class="template-btn mt-3 long-button" target="_blank">Финансово-хозяйственная деятельность</a>
+                            </li>
+                            <li class="media post_item">
+                                <a href="about_vacancies.html" class="template-btn mt-3 long-button" target="_blank">Вакантные места для приема(перевода)</a>
+                            </li>                                                                                                                                                                                                 
+                        </ul>
+                        <div class="br"></div>
+                    </aside>
+                </div>
+            </div>                
+            <div class="col-lg-8">
+                <div class="welcome-text-row mt-5 mt-lg-0">
+                    <h2>Основные сведения</h2>
+                    <h3>Дата создания образовательной организации</h3>
+                    {{ page.date_of_creation|richtext }}
+                    <h3>Информация об учреждении</h3>
+                    {{ page.brief_information|richtext }}
+                    <h3>Учредитель автошколы</h3>
+                    {{ page.founder|richtext }}                    
+                    <h3>Местонахождение образовательной организации</h3>
+                    {{ page.locate|richtext }}                    
+                    <h3>График вождения</h3>
+                    {{ page.driving_schedule|richtext }}
+                    <h3>График работы</h3>
+                    {{ page.schedule|richtext }}
+                    <h3>Контактный телефон</h3>
+                    {{ page.numbers|richtext }}
+                    <h3>Электронный адрес</h3>
+                    {{ page.email|richtext }}
+                </div>  
+            </div>
+        </div>
+    </div>
+</section>
 
 {% footer %}
 {% endblock content %}
