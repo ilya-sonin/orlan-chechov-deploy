@@ -45,22 +45,39 @@ class ChildAboutPage(Page):
         ('h4', blocks.CharBlock(classname="h4 заголовок")),
         ('h5', blocks.CharBlock(classname="h5 заголовок")),
         ('Текст', blocks.RichTextBlock()),
+    ], default=None, verbose_name="Обычный текст")
+
+    bl_ones = StreamField([
         ('ДокументPDF', DocumentChooserBlock(classname="документ pdf")),
-        ('Фотография', ImageChooserBlock(classname="фотография")),
         ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
-            ('Иконка', ImageChooserBlock(classname="иконка")),
-            ('Заголовок', blocks.CharBlock(classname="заголовок для блока")),
-            ('Описание', blocks.RichTextBlock())
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+            ('description', blocks.RichTextBlock())
         ]))),
         ('мб', blocks.ListBlock(blocks.StructBlock([
-            ('Иконка', ImageChooserBlock(classname="иконка")),
-            ('Заголовок', blocks.CharBlock(classname="заголовок для блока")),
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
         ]))),
-    ], default=None)
+    ], default=None, verbose_name="Одинарный блок")
+
+    bl_many = StreamField([
+        ('ДокументPDF', DocumentChooserBlock(classname="документ pdf")),
+        ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+            ('description', blocks.RichTextBlock())
+        ]))),
+        ('мб', blocks.ListBlock(blocks.StructBlock([
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+        ]))),    
+    ], default=None, verbose_name="Длинный блок")
     
     class Meta:
         verbose_name = "Создать дочернюю страницу об автошколе"
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
+        StreamFieldPanel('bl_ones'),
+        StreamFieldPanel('bl_many'),
     ]

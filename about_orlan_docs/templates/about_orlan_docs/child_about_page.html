@@ -1,11 +1,135 @@
 {% extends 'base.html' %}
-{% load wagtailcore_tags head %}
 {% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags head %}
 {% load wagtailcore_tags footer %}
+{% load static %}
 
 {% block content %}
 
 {% head %}
+<section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ page.title }}</h1>
+                <a href="/">Главная</a> <span>|</span> <a href="{{ page.url }}">{{ page.title }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature-area section-padding" id="structure">
+        <div class="container">
+
+            {% if page.body %}
+            {% for block in page.body %}
+
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="section-top text-center">
+                        {% if block.block_type == 'h1' %}
+                        <h1>{{ block.value }}</h1>
+                        {% elif block.block_type == 'h2' %}
+                        <h2>{{ block.value }}</h2>
+                        {% elif block.block_type == 'h3' %}
+                        <h3>{{ block.value }}</h3>
+                        {% elif block.block_type == 'h4' %}
+                        <h4>{{ block.value }}</h4>
+                        {% elif block.block_type == 'h5' %}
+                        <h5>{{ block.value }}</h5>
+                        {% elif block.block_type == 'Текст' %}
+                        {{ block.value|richtext }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            {% endif %}
+
+            {% if page.bl_ones %}
+            {% for block in page.bl_ones %}
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    {% if block.block_type == 'ДокументPDF' %}
+                    <div class="single-feature text-center item-padding" onclick=window.open('{{ block.value.url }}')>
+                        <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
+                        <h3>{{ block.value }}</h3>
+                    </div>
+                    {% else %}
+                    <div class="single-feature text-center item-padding">
+                        {% if block.block_type == 'мб_с_описанием' %}
+                        
+                        {% for bl in block.value %}
+                        {% image bl.icon width-95 as icon_bl %}
+                        <img src="{{ icon_bl.url }}" alt="" width="95">
+                        <h3>{{ bl.title }}</h3>
+                        {{ bl.description|richtext }}
+                        {% endfor %}
+                        
+                        {% elif block.block_type == 'мб' %}
+                        
+                        {% for bl in block.value %}
+                        {% image bl.icon width-95 as icon %}
+                        <img src="{{ icon.url }}" alt="" width="95">
+                        <h3>{{ bl.title }}</h3>
+                        {% endfor %}
+
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endfor %}
+            {% endif %}
+            
+            {% if page.bl_many %}
+            
+            <div class="row">
+                {% for block in page.bl_many %}
+                
+                {% if block.block_type == 'ДокументPDF' %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-feature text-center item-padding" onclick=window.open('{{ block.value.url }}')>
+                        <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
+                        <h3>{{ block.value }}</h3>
+                    </div>
+                </div>
+                
+                {% elif block.block_type == 'мб_с_описанием' %}
+                {% for bl in block.value %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-feature text-center item-padding">
+                        {% image bl.icon width-95 as icon_bl %}
+                        <img src="{{ icon_bl.url }}" alt="" width="95">
+                        <h3>{{ bl.title }}</h3>
+                        {{ bl.description|richtext }}
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% elif block.block_type == 'мб' %}
+                {% for bl in block.value %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-feature text-center item-padding">
+                        {% image bl.icon width-95 as icon_bl %}
+                        <img src="{{ icon_bl.url }}" alt="" width="95">
+                        <h3>{{ bl.title }}</h3>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            {% endif %}
+
+        </div>
+</section>
 
 {% footer %}
 
