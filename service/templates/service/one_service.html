@@ -45,21 +45,31 @@
             <div class="col-lg-6 offset-lg-3">
                 <div class="section-top text-center">
                     <h2>{{ page.title_learning_information }}</h2>
-                    {{ page.description_learning_information|richtext }}
                 </div>
             </div>
         </div>            
         <div class="row">
-            {% for learn in page.learnobj.all %}
             <div class="col-lg-4 col-md-6">
                 <div class="single-feature text-center item-padding">
-                    {% image learn.img max-77x77 as img %}
-                    <img src="{{ img.url }}">
-                    <h3>{{ learn.title }}</h3>
-                    {{ learn.description|richtext }}
+                    <img src="{% static 'images/icons/categories/pay.svg' %}" width="95">
+                    <h3>{{ page.title_price }}</h3>
+                    {{ page.description_price|richtext }}
                 </div>
             </div>
-            {% endfor %}
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature text-center item-padding">
+                    <img src="{% static 'images/icons/categories/education.svg' %}"" width="95">
+                    <h3>{{ page.title_date }}</h3>
+                    {{ page.description_date|richtext }}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature text-center item-padding">
+                    <img src="{% static 'images/icons/categories/age-16.svg' %}"" width="95">
+                    <h3>{{ page.title_age }}</h3>
+                    {{ page.description_age|richtext }}
+                </div>
+            </div>
         </div>
     </div>
 </section>

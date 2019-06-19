@@ -21,38 +21,31 @@ class OneService(Page):
 
     title_learning_information = models.CharField("Заголовок сведение обучения", max_length=50,
                                                   default="Сведения об обучении")
-    description_learning_information = RichTextField("Описание под заголовком",
-                                                     default="Описание")
+
+    title_price = models.CharField("СТОИМОСТЬ ОБУЧЕНИЯ", max_length=50, default="СТОИМОСТЬ ОБУЧЕНИЯ")
+    description_price = RichTextField("Описание", default="Описание")
+
+    title_date = models.CharField("СРОК ОБУЧЕНИЯ", max_length=50, default="СРОК ОБУЧЕНИЯ")
+    description_date = RichTextField("Описание", default="Описание")
+
+    title_age = models.CharField("НЕОБХОДИМЫЙ ВОЗРАСТ", max_length=50, default="НЕОБХОДИМЫЙ ВОЗРАСТ")
+    description_age = RichTextField("Описание", default="Описание")
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('img_description'),
         FieldPanel('description_title'),
         FieldPanel('description_text'),
         FieldPanel('title_learning_information'),
-        FieldPanel('description_learning_information'),
-        InlinePanel('learnobj', label="блок информации")
+        FieldPanel('title_price'),
+        FieldPanel('description_price'),
+        FieldPanel('title_date'),
+        FieldPanel('description_date'),
+        FieldPanel('title_age'),
+        FieldPanel('description_age'),
     ]
     
     class Meta:
         verbose_name = "Добавить услугу"
-
-
-class LearningInformationOneObject(Orderable):
-    page = ParentalKey(OneService, related_name="learnobj")
-    img = models.ForeignKey('wagtailimages.Image',
-                            verbose_name='Картинка блока информации',
-                            null=True,
-                            blank=True,
-                            on_delete=models.SET_NULL,
-                            related_name='+')
-    title = models.CharField("Заголовок", max_length=50, default="Заголовок")
-    description = RichTextField("Описание", default="Описание")
-
-    panels = [
-        ImageChooserPanel('img'),
-        FieldPanel('title'),
-        FieldPanel('description'),
-    ]
 
 
 class ServicePage(Page):

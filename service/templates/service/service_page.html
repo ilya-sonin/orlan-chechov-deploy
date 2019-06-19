@@ -30,12 +30,10 @@
         <div class="row">
             {% for serv in services %}
             <div class="col-lg-4 col-md-6">
-                <a href="service-certain.html">
-                    <div class="single-feature text-center item-padding mt-4 mt-lg-0">                 
-                        <img src="images/feature2.png" alt="Второе преимущество">
-                        <h3>Категория B</h3>
-                    </div>
-                </a>
+                <div class="single-feature text-center item-padding mt-4 mt-lg-0" onclick=window.open('{{ serv.url }}')>                 
+                    <img src="{% static 'images/icons/service/car-b.svg' %}" alt="{{ serv }}" width="95">
+                    <h3>{{ serv }}</h3>
+                </div>
             </div>
             {% endfor %}
         </div>
