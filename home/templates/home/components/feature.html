@@ -1,5 +1,6 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load static %}
 
 <section class="feature-area section-padding">
     <div class="container">
@@ -10,18 +11,36 @@
                     {{ page.feature_mini_description|richtext }}
                 </div>
             </div>
-        </div>            
+        </div>
         <div class="row">
-            {% for f in page.featured.all %}
             <div class="col-lg-3 col-md-6">
                 <div class="single-feature text-center item-padding">
-                    {% image f.image width-77 as feature_img %}
-                    <img src="{{ feature_img.url }}">
-                    <h3>{{ f.title }}</h3>
-                    {{ f.description|richtext }}
+                    <img src="{% static 'images/icons/index/bonuses.svg' %}" alt="Первое преимущество" width="95">
+                    <h3>Бонусы учащимся</h3>
+                    <p class="pt-3">Наша автошкола предоставляет выгодные скидки на обучение для студентов и инвалидов!</p>
                 </div>
             </div>
-            {% endfor %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding mt-4 mt-md-0">
+                    <img src="{% static 'images/icons/index/experience.svg' %}" alt="Второе преимущество" width="95">
+                    <h3>Преподавательский опыт</h3>
+                    <p class="pt-3">У нас работают лучшие преподаватели города! Ваше обучение будет в надежных руках!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding mt-4 mt-lg-0">
+                    <img src="{% static 'images/icons/index/high-lvl.svg' %}" alt="Третье преимущество" width="95">
+                    <h3>Высокий уровень сдачи экзаменов</h3>
+                    <p class="pt-3">У нас 96% учащихся успешно сдают экзамены в ГИБДД!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding mt-4 mt-lg-0">
+                    <img src="{% static 'images/icons/index/best-conditions.svg' %}" alt="Четвертое преимущество" width="95">
+                    <h3>Отличные условия для обучения</h3>
+                    <p class="pt-3">Наша автошкола имеет передовое оборудование для вашего обучения. Начиная от ноутбуков и заканчивая иномарками</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

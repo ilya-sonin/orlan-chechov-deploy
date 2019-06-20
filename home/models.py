@@ -81,7 +81,6 @@ class HomePage(Page):
         FieldPanel('mini_about_button_text'),
         FieldPanel('feature_title_text'),
         FieldPanel('feature_mini_description'),
-        InlinePanel('featured', label="Добавить преимущество"),
         FieldPanel('gallery_title'),
         FieldPanel('what_they_say_about_us_title'),
         FieldPanel('first_feedback_name'),
@@ -105,21 +104,3 @@ class HomePage(Page):
     class Meta:
         verbose_name = "Добавить домашнюю страницу (Не трогать!)"
 
-
-class Featured(Orderable):
-    page = ParentalKey(HomePage, related_name="featured")
-    image = models.ForeignKey('wagtailimages.Image',
-                              verbose_name='Картинка преимущества',
-                              null=True,
-                              blank=True,
-                              on_delete=models.SET_NULL,
-                              related_name='+',
-                              help_text="Изображение должно быть в размером 77 на 77")
-    title = models.CharField("Заголовок преимущества", max_length=200, default="Заголовок")
-    description = RichTextField("Описание преимущества", default="Описание")
-
-    panels = [
-        ImageChooserPanel('image'),
-        FieldPanel('title'),
-        FieldPanel('description')
-    ]
