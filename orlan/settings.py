@@ -3,12 +3,11 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-DEBUG = True
+DEBUG = False
 
 SECRET_KEY = '0=d#azm)k%(nyikr1@0rjw)$eoh%cg_-tqp)&c&6()a0ot8m!b'
 
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['ck09478-django-4.tw1.ru'] 
 
 # Application definition
 
@@ -50,10 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
 ]
-
-RECAPTCHA_PUBLIC_KEY = '6LcxFqMUAAAAACAsHx6ja1A2-_zGEiR9SoW2HLuf'
-RECAPTCHA_PRIVATE_KEY = '6LcxFqMUAAAAAGamwFWJ2Zkl74q92LYmN4FbQtdu'
-
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -159,7 +154,7 @@ WAGTAIL_SITE_NAME = "orlan"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://orlan-chehov.ru/'
+BASE_URL = 'http://ck09478-django-4.tw1.ru'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
