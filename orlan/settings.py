@@ -160,3 +160,11 @@ WAGTAIL_SITE_NAME = "orlan"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://orlan-chehov.ru/'
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.timeweb.ru'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'info@orlan-chehov.ru'
+EMAIL_HOST_PASSWORD = 'EC2zS78e'

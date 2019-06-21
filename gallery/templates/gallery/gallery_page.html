@@ -23,7 +23,7 @@
             <div class="row">
                 {% for gal in page.gallery_images.all %}
                     <div class="col-md-4">
-                        {% image gal.image min-263x180 as gal_image %}
+                        {% image gal.image min-1920x1080 as gal_image %}
                         <div class="single-gallery-item" style="background: url('{{ gal_image.url }}');"></div>
                     </div>
                 {% endfor %}

@@ -95,7 +95,7 @@ class HomePage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        context['gallery'] = GalleryPage.objects.child_of(self).live()[:6]
+        context['gallery'] = GalleryPage.objects.child_of(self).live()
         return context
 
     def __str__(self):
