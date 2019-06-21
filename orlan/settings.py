@@ -7,7 +7,7 @@ DEBUG = False
 
 SECRET_KEY = '0=d#azm)k%(nyikr1@0rjw)$eoh%cg_-tqp)&c&6()a0ot8m!b'
 
-ALLOWED_HOSTS = ['ck09478-django-4.tw1.ru'] 
+ALLOWED_HOSTS = ['*'] 
 
 # Application definition
 
@@ -139,7 +139,6 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
