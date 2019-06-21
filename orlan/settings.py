@@ -7,7 +7,7 @@ DEBUG = False
 
 SECRET_KEY = '0=d#azm)k%(nyikr1@0rjw)$eoh%cg_-tqp)&c&6()a0ot8m!b'
 
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['www.orlan-chehov.ru', "orlan-chehov.ru"] 
 
 # Application definition
 
@@ -153,7 +153,7 @@ WAGTAIL_SITE_NAME = "orlan"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://ck09478-django-4.tw1.ru'
+BASE_URL = 'orlan-chehov.ru'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

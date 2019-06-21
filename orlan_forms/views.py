@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.mail import send_mail
 
-recipient_list = ["ilja.sonin2018@yandex.ru"]
+recipient_list = ["ilja.sonin2018@yandex.ru", "orlan-chechov@yandex.ru"]
 
 def parent_form(request):
     if request.method == "POST":
