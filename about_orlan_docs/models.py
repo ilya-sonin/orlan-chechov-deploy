@@ -45,7 +45,7 @@ class ChildAboutPage(Page):
         ('h4', blocks.CharBlock(classname="h4 заголовок")),
         ('h5', blocks.CharBlock(classname="h5 заголовок")),
         ('Текст', blocks.RichTextBlock()),
-    ], default=None, verbose_name="Обычный текст")
+    ], default=None, verbose_name="Обычный текст", null=True,blank=True)
 
     bl_ones = StreamField([
         ('ДокументPDF', DocumentChooserBlock(classname="документ pdf")),
@@ -58,7 +58,7 @@ class ChildAboutPage(Page):
             ('icon', ImageChooserBlock(classname="иконка")),
             ('title', blocks.CharBlock(classname="заголовок для блока")),
         ]))),
-    ], default=None, verbose_name="Одинарный блок")
+    ], default=None, verbose_name="Одинарный блок", null=True,blank=True)
 
     bl_many = StreamField([
         ('ДокументPDF', DocumentChooserBlock(classname="документ pdf")),
@@ -71,7 +71,7 @@ class ChildAboutPage(Page):
             ('icon', ImageChooserBlock(classname="иконка")),
             ('title', blocks.CharBlock(classname="заголовок для блока")),
         ]))),    
-    ], default=None, verbose_name="Длинный блок")
+    ], default=None, verbose_name="Длинный блок", null=True,blank=True)
     
     class Meta:
         verbose_name = "Создать дочернюю страницу об автошколе"
