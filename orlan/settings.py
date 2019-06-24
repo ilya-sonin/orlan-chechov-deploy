@@ -7,8 +7,7 @@ DEBUG = True
 
 SECRET_KEY = '0=d#azm)k%(nyikr1@0rjw)$eoh%cg_-tqp)&c&6()a0ot8m!b'
 
-# ALLOWED_HOSTS = ['www.orlan-chehov.ru', "orlan-chehov.ru"] 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['www.orlan-chehov.ru', "orlan-chehov.ru"] 
 # Application definition
 
 INSTALLED_APPS = [
