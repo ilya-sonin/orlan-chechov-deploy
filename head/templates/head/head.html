@@ -35,19 +35,19 @@
                             <li class="menu-dropdown"><a href="/aboutus/">Об автошколе</a>
                                 <ul>
                                     <li><a href="/aboutus/">Основные сведения</a></li>
-                                    <li><a href="/aboutus/">Структура</a></li>
-                                    <li><a href="/aboutus/">Документы</a></li>
-                                    <li><a href="/aboutus/">Руководство и педагогический состав</a></li>
-                                    <li><a href="/aboutus/">Материально-техническое обеспечение</a></li>
-                                    <li><a href="/aboutus/">Платные образовательные услуги</a></li>
-                                    <li><a href="/aboutus/">Финансово-хозяйственная деятельность</a></li>   
-                                    <li><a href="/aboutus/">Вакантные места для приема(перевода)</a></li>                            
+                                    <li><a href="/aboutus/structure/">Структура</a></li>
+                                    <li><a href="/aboutus/documents/">Документы</a></li>
+                                    <li><a href="/aboutus/management/">Руководство и педагогический состав</a></li>
+                                    <li><a href="/aboutus/transport/">Материально-техническое обеспечение</a></li>
+                                    <li><a href="/aboutus/paid/">Платные образовательные услуги</a></li>
+                                    <li><a href="/aboutus/activity/">Финансово-хозяйственная деятельность</a></li>   
+                                    <li><a href="/aboutus/vacancies/">Вакантные места для приема(перевода)</a></li>                            
                                 </ul>
                             </li>
                             <li><a href="/news/">Новости</a></li>
                             {% for m in menu %}
                             {% if m.get_children %}
-                            <li><a href="{{ m.url }}" class="menu-dropdown">{{ m }}</a>
+                            <li class="menu-dropdown"><a href="{{ m.url }}">{{ m }}</a>
                                 <ul>
                             {% for child in m.get_children %}
                                     <li><a href="{{ child.url }}">{{ child }}</a></li>
