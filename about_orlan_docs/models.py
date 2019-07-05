@@ -6,7 +6,6 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 from wagtail.core import blocks
-from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -48,7 +47,10 @@ class ChildAboutPage(Page):
     ], default=None, verbose_name="Обычный текст", null=True,blank=True)
 
     bl_ones = StreamField([
-        ('ДокументPDF', DocumentChooserBlock(classname="документ pdf")),
+        ('документ', blocks.ListBlock(blocks.StructBlock([
+            ('title', blocks.CharBlock(classname="Заголовок")),
+            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
+        ]))),
         ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
             ('icon', ImageChooserBlock(classname="иконка")),
             ('title', blocks.CharBlock(classname="заголовок для блока")),
@@ -61,7 +63,10 @@ class ChildAboutPage(Page):
     ], default=None, verbose_name="Одинарный блок", null=True,blank=True)
 
     bl_many = StreamField([
-        ('ДокументPDF', DocumentChooserBlock(classname="документ pdf")),
+        ('документ', blocks.ListBlock(blocks.StructBlock([
+            ('title', blocks.CharBlock(classname="Заголовок")),
+            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
+        ]))),
         ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
             ('icon', ImageChooserBlock(classname="иконка")),
             ('title', blocks.CharBlock(classname="заголовок для блока")),

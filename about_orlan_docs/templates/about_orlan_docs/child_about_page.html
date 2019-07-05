@@ -53,11 +53,13 @@
 
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    {% if block.block_type == 'ДокументPDF' %}
-                    <div class="single-feature text-center item-padding" onclick=window.open('{{ block.value.url }}')>
+                    {% if block.block_type == 'документ' %}
+                    {% for bl in block.value %}
+                    <div class="single-feature text-center item-padding" onclick=window.open('{% static 'documents/pdf/'%}{{ bl.static_name }}')>
                         <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
-                        <h3>{{ block.value }}</h3>
+                        <h3>{{ bl.title }}</h3>
                     </div>
+                    {% endfor %}
                     {% else %}
                     <div class="single-feature text-center item-padding">
                         {% if block.block_type == 'мб_с_описанием' %}
@@ -91,13 +93,13 @@
             <div class="row">
                 {% for block in page.bl_many %}
                 
-                {% if block.block_type == 'ДокументPDF' %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-feature text-center item-padding" onclick=window.open('{{ block.value.url }}')>
+                {% if block.block_type == 'документ' %}
+                {% for bl in block.value %}
+                    <div class="single-feature text-center item-padding" onclick=window.open('{% static 'documents/pdf/'%}{{ bl.static_name }}')>
                         <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
-                        <h3>{{ block.value }}</h3>
+                        <h3>{{ bl.title }}</h3>
                     </div>
-                </div>
+                {% endfor %}
                 
                 {% elif block.block_type == 'мб_с_описанием' %}
                 {% for bl in block.value %}
