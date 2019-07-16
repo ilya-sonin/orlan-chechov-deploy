@@ -34,7 +34,7 @@ class AboutDocsOrlan(Page):
         FieldPanel('email'),
     ]
 
-
+"""
 class ChildAboutPage(Page):
     
     body = StreamField([
@@ -85,4 +85,51 @@ class ChildAboutPage(Page):
         StreamFieldPanel('body'),
         StreamFieldPanel('bl_ones'),
         StreamFieldPanel('bl_many'),
+    ]
+"""
+
+class ChildAboutPage(Page):
+    
+    body = StreamField([
+        ('Текст', blocks.RichTextBlock()),
+        ('документ', blocks.ListBlock(blocks.StructBlock([
+            ('title', blocks.CharBlock(classname="Заголовок")),
+            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
+        ]))),
+        ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+            ('description', blocks.RichTextBlock())
+        ]))),
+        ('мб', blocks.ListBlock(blocks.StructBlock([
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+        ]))),
+        ('документ_строка', blocks.ListBlock(blocks.StructBlock([
+            ('title', blocks.CharBlock(classname="Заголовок")),
+            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
+        ]))),
+        ('мб_с_описанием_строка', blocks.ListBlock(blocks.StructBlock([
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+            ('description', blocks.RichTextBlock())
+        ]))),
+        ('мб_строка', blocks.ListBlock(blocks.StructBlock([
+            ('icon', ImageChooserBlock(classname="иконка")),
+            ('title', blocks.CharBlock(classname="заголовок для блока")),
+        ]))),
+        ('два_фото', blocks.ListBlock(blocks.StructBlock([
+            ('static_name1', blocks.CharBlock(classname="Название первой фото")),
+            ('href1', blocks.CharBlock(classname="Сслыка на unplash первого фотоо")),
+            ('static_name2', blocks.CharBlock(classname="Название второй фото")),
+            ('href2', blocks.CharBlock(classname="Сслыка на unplash второго фотоо")),
+        ]))),
+    ], default=None, verbose_name="Обычный текст", null=True,blank=True)
+
+    
+    class Meta:
+        verbose_name = "Создать дочернюю страницу об автошколе"
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
     ]

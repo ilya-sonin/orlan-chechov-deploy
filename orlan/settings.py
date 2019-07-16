@@ -3,13 +3,13 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 SECRET_KEY = '0=d#azm)k%(nyikr1@0rjw)$eoh%cg_-tqp)&c&6()a0ot8m!b'
 
-ALLOWED_HOSTS = ['www.orlan-chehov.ru', "orlan-chehov.ru"]
-# ALLOWED_HOSTS = ['*'] 
+# ALLOWED_HOSTS = ['www.orlan-chehov.ru', "orlan-chehov.ru"]
+ALLOWED_HOSTS = ['*'] 
 # Application definition
 
 INSTALLED_APPS = [

@@ -19,118 +19,127 @@
     </div>
 </section>
 
-<section class="feature-area section-padding" id="structure">
-        <div class="container">
 
-            {% if page.body %}
-            {% for block in page.body %}
+<section class="feature-area section-padding-top">
+    <div class="container">
 
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="section-top text-center">
-                        {% if block.block_type == 'h1' %}
-                        <h1>{{ block.value }}</h1>
-                        {% elif block.block_type == 'h2' %}
-                        <h2>{{ block.value }}</h2>
-                        {% elif block.block_type == 'h3' %}
-                        <h3>{{ block.value }}</h3>
-                        {% elif block.block_type == 'h4' %}
-                        <h4>{{ block.value }}</h4>
-                        {% elif block.block_type == 'h5' %}
-                        <h5>{{ block.value }}</h5>
-                        {% elif block.block_type == 'Текст' %}
-                        {{ block.value|richtext }}
-                        {% endif %}
-                    </div>
+        {% if page.body %}
+        {% for block in page.body %}
+
+        {% if block.block_type == 'Текст' %}
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="section-top text-center">
+                    {{ block.value|richtext }}
                 </div>
             </div>
-
-            {% endfor %}
-            {% endif %}
-
-            {% if page.bl_ones %}
-            {% for block in page.bl_ones %}
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    {% if block.block_type == 'документ' %}
-                    {% for bl in block.value %}
-                    <div class="single-feature text-center item-padding" onclick=window.open('{% static 'documents/pdf/'%}{{ bl.static_name }}')>
-                        <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
-                        <h3>{{ bl.title }}</h3>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="single-feature text-center item-padding">
-                        {% if block.block_type == 'мб_с_описанием' %}
-                        
-                        {% for bl in block.value %}
-                        {% image bl.icon width-95 as icon_bl %}
-                        <img src="{{ icon_bl.url }}" alt="" width="95">
-                        <h3>{{ bl.title }}</h3>
-                        {{ bl.description|richtext }}
-                        {% endfor %}
-                        
-                        {% elif block.block_type == 'мб' %}
-                        
-                        {% for bl in block.value %}
-                        {% image bl.icon width-95 as icon %}
-                        <img src="{{ icon.url }}" alt="" width="95">
-                        <h3>{{ bl.title }}</h3>
-                        {% endfor %}
-
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-
-            {% endfor %}
-            {% endif %}
-            
-            {% if page.bl_many %}
-            
-            <div class="row">
-                {% for block in page.bl_many %}
-                
-                {% if block.block_type == 'документ' %}
-                {% for bl in block.value %}
-                    <div class="single-feature text-center item-padding" onclick=window.open('{% static 'documents/pdf/'%}{{ bl.static_name }}')>
-                        <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
-                        <h3>{{ bl.title }}</h3>
-                    </div>
-                {% endfor %}
-                
-                {% elif block.block_type == 'мб_с_описанием' %}
-                {% for bl in block.value %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-feature text-center item-padding">
-                        {% image bl.icon width-95 as icon_bl %}
-                        <img src="{{ icon_bl.url }}" alt="" width="95">
-                        <h3>{{ bl.title }}</h3>
-                        {{ bl.description|richtext }}
-                    </div>
-                </div>
-                {% endfor %}
-
-                {% elif block.block_type == 'мб' %}
-                {% for bl in block.value %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-feature text-center item-padding">
-                        {% image bl.icon width-95 as icon_bl %}
-                        <img src="{{ icon_bl.url }}" alt="" width="95">
-                        <h3>{{ bl.title }}</h3>
-                    </div>
-                </div>
-                {% endfor %}
-
-                {% endif %}
-                {% endfor %}
-            </div>
-
-            {% endif %}
-
         </div>
+
+        {% elif block.block_type == 'документ' %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                {% for bl in block.value %}
+                <div class="single-feature text-center item-padding" onclick=window.open('{% static 'documents/pdf/'%}{{ bl.static_name }}')>
+                    <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
+                    <h3>{{ bl.title }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% elif block.block_type == 'мб_с_описанием' %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                {% for bl in block.value %}
+                <div class="single-feature text-center item-padding">
+                    {% image bl.icon width-95 as icon_bl %}
+                    <img src="{{ icon_bl.url }}" alt="" width="95">
+                    <h3>{{ bl.title }}</h3>
+                    {{ bl.description|richtext }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% elif block.block_type == 'мб' %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                {% for bl in block.value %}
+                <div class="single-feature text-center item-padding">
+                    {% image bl.icon width-95 as icon_bl %}
+                    <img src="{{ icon_bl.url }}" alt="" width="95">
+                    <h3>{{ bl.title }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% elif block.block_type == 'документ_строка' %}
+        <div class="row">
+            {% for bl in block.value %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding" onclick=window.open('{% static 'documents/pdf/'%}{{ bl.static_name }}')>
+                    <img alt="" width="95" src={% static 'images/icons/about/pdf.svg' %}>
+                    <h3>{{ bl.title }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% elif block.block_type == 'мб_с_описанием_строка' %}
+        <div class="row">
+            {% for bl in block.value %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding">
+                    {% image bl.icon width-95 as icon_bl %}
+                    <img src="{{ icon_bl.url }}" alt="" width="95">
+                    <h3>{{ bl.title }}</h3>
+                    {{ bl.description|richtext }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% elif block.block_type == 'мб_строка' %}
+        <div class="row">
+            {% for bl in block.value %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature text-center item-padding">
+                    {% image bl.icon width-95 as icon_bl %}
+                    <img src="{{ icon_bl.url }}" alt="" width="95">
+                    <h3>{{ bl.title }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% elif block.block_type == 'два_фото' %}
+        <div class="row">
+            {% for bl in block.value %}
+            <div class="col-md-6">
+                <a href="{{ bl.href1 }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name1 }}'); background-position: top !important;"></div>
+                </a>    
+            </div>
+            <div class="col-md-6">
+                <a href="{{ bl.href2 }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name2 }}'); background-position: top !important;"></div>
+                </a>  
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</section>
+<section class="feature-area section-padding">
+    <div class="container">           
+        <div class="row d-flex justify-content-between">
+            <a href="" class="template-btn mt-3 short-button">Предыдущая</a>
+            <a href="" class="template-btn mt-3 short-button">Следующая</a>
+        </div>
+    </div>
 </section>
 
 {% footer %}
