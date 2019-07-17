@@ -120,9 +120,7 @@ class ChildAboutPage(Page):
         ]))),
         ('два_фото', blocks.ListBlock(blocks.StructBlock([
             ('static_name1', blocks.CharBlock(classname="Название первой фото")),
-            ('href1', blocks.CharBlock(classname="Сслыка на unplash первого фотоо")),
             ('static_name2', blocks.CharBlock(classname="Название второй фото")),
-            ('href2', blocks.CharBlock(classname="Сслыка на unplash второго фотоо")),
         ]))),
     ], default=None, verbose_name="Обычный текст", null=True,blank=True)
 
