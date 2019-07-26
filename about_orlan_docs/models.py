@@ -28,106 +28,55 @@ class AboutDocsOrlan(Page):
         FieldPanel('brief_information'),
         FieldPanel('founder'),
         FieldPanel('locate'),
-        FieldPanel ('driving_schedule'),
+        FieldPanel('driving_schedule'),
         FieldPanel('schedule'),
         FieldPanel('numbers'),
         FieldPanel('email'),
     ]
 
-"""
+
 class ChildAboutPage(Page):
-    
-    body = StreamField([
-        ('h1', blocks.CharBlock(classname="h1 заголовок")),
-        ('h2', blocks.CharBlock(classname="h2 заголовок")),
-        ('h3', blocks.CharBlock(classname="h3 заголовок")),
-        ('h4', blocks.CharBlock(classname="h4 заголовок")),
-        ('h5', blocks.CharBlock(classname="h5 заголовок")),
-        ('Текст', blocks.RichTextBlock()),
-    ], default=None, verbose_name="Обычный текст", null=True,blank=True)
 
-    bl_ones = StreamField([
-        ('документ', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock(classname="Заголовок")),
-            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
-        ]))),
-        ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-            ('description', blocks.RichTextBlock())
-        ]))),
-        ('мб', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-        ]))),
-    ], default=None, verbose_name="Одинарный блок", null=True,blank=True)
+    body_mother = StreamField([
+        ('child', blocks.StreamBlock([
+            ('Текст', blocks.RichTextBlock()),
+            ('документ', blocks.ListBlock(blocks.StructBlock([
+                ('title', blocks.CharBlock(classname="Заголовок")),
+                ('static_name', blocks.CharBlock(classname="ссылка на документ")),
+            ]))),
+            ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
+                ('icon', ImageChooserBlock(classname="иконка")),
+                ('title', blocks.CharBlock(classname="заголовок для блока")),
+                ('description', blocks.RichTextBlock())
+            ]))),
+            ('мб', blocks.ListBlock(blocks.StructBlock([
+                ('icon', ImageChooserBlock(classname="иконка")),
+                ('title', blocks.CharBlock(classname="заголовок для блока")),
+            ]))),
+            ('документ_строка', blocks.ListBlock(blocks.StructBlock([
+                ('title', blocks.CharBlock(classname="Заголовок")),
+                ('static_name', blocks.CharBlock(classname="ссылка на документ")),
+            ]))),
+            ('мб_с_описанием_строка', blocks.ListBlock(blocks.StructBlock([
+                ('icon', ImageChooserBlock(classname="иконка")),
+                ('title', blocks.CharBlock(classname="заголовок для блока")),
+                ('description', blocks.RichTextBlock())
+            ]))),
+            ('мб_строка', blocks.ListBlock(blocks.StructBlock([
+                ('icon', ImageChooserBlock(classname="иконка")),
+                ('title', blocks.CharBlock(classname="заголовок для блока")),
+            ]))),
+            ('два_фото', blocks.ListBlock(blocks.StructBlock([
+                ('static_name1', blocks.CharBlock(classname="Название первой фото")),
+                ('static_name2', blocks.CharBlock(classname="Название второго фото")),
+                ('static_name3', blocks.CharBlock(classname="Название третьего фото")),
+            ]))),
+        ]))
+    ], default=None, verbose_name="Большой блок", null=True,blank=True)
 
-    bl_many = StreamField([
-        ('документ', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock(classname="Заголовок")),
-            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
-        ]))),
-        ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-            ('description', blocks.RichTextBlock())
-        ]))),
-        ('мб', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-        ]))),    
-    ], default=None, verbose_name="Длинный блок", null=True,blank=True)
-    
     class Meta:
         verbose_name = "Создать дочернюю страницу об автошколе"
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
-        StreamFieldPanel('bl_ones'),
-        StreamFieldPanel('bl_many'),
-    ]
-"""
-
-class ChildAboutPage(Page):
-    
-    body = StreamField([
-        ('Текст', blocks.RichTextBlock()),
-        ('документ', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock(classname="Заголовок")),
-            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
-        ]))),
-        ('мб_с_описанием', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-            ('description', blocks.RichTextBlock())
-        ]))),
-        ('мб', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-        ]))),
-        ('документ_строка', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock(classname="Заголовок")),
-            ('static_name', blocks.CharBlock(classname="ссылка на документ")),
-        ]))),
-        ('мб_с_описанием_строка', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-            ('description', blocks.RichTextBlock())
-        ]))),
-        ('мб_строка', blocks.ListBlock(blocks.StructBlock([
-            ('icon', ImageChooserBlock(classname="иконка")),
-            ('title', blocks.CharBlock(classname="заголовок для блока")),
-        ]))),
-        ('два_фото', blocks.ListBlock(blocks.StructBlock([
-            ('static_name1', blocks.CharBlock(classname="Название первой фото")),
-            ('static_name2', blocks.CharBlock(classname="Название второй фото")),
-        ]))),
-    ], default=None, verbose_name="Обычный текст", null=True,blank=True)
-
-    
-    class Meta:
-        verbose_name = "Создать дочернюю страницу об автошколе"
-
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        StreamFieldPanel('body_mother')
     ]

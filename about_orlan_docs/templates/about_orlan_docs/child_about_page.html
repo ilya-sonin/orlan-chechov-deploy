@@ -8,6 +8,7 @@
 {% block content %}
 
 {% head %}
+
 <section class="banner-area other-page" style="background-image: url('{% static 'images/banner-bg.jpg' %}')">
     <div class="container">
         <div class="row">
@@ -19,12 +20,12 @@
     </div>
 </section>
 
-
+{% if page.body_mother %}
+{% for blockm in page.body_mother %}
+{% if blockm.block_type == 'child' %}
 <section class="feature-area section-padding-top">
     <div class="container">
-
-        {% if page.body %}
-        {% for block in page.body %}
+    {% for block in blockm.value %}
 
         {% if block.block_type == 'Текст' %}
         <div class="row">
@@ -113,14 +114,19 @@
         {% elif block.block_type == 'два_фото' %}
         <div class="row">
             {% for bl in block.value %}
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a href="{% static 'documents/jpeg/' %}{{ bl.static_name1 }}" data-fancybox="images" data-caption="">
-                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name1 }}'); background-position: top !important;"></div>
+                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name1 }}'); background-position: top !important; height: 500px;"></div>
                 </a>    
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a href="{% static 'documents/jpeg/' %}{{ bl.static_name2 }}" data-fancybox="images" data-caption="">
-                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name2 }}'); background-position: top !important;"></div>
+                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name2 }}'); background-position: top !important; height: 500px;"></div>
+                </a>  
+            </div>
+            <div class="col-md-4">
+                <a href="{% static 'documents/jpeg/' %}{{ bl.static_name3 }}" data-fancybox="images" data-caption="">
+                    <div class="single-gallery-item" style="background: url('{% static 'documents/jpeg/' %}{{ bl.static_name3 }}'); background-position: top !important; height: 500px;"></div>
                 </a>  
             </div>
             {% endfor %}
@@ -129,10 +135,12 @@
         {% endif %}
 
         {% endfor %}
-        {% endif %}
-
     </div>
 </section>
+{% endif %}
+{% endfor %}
+{% endif %}
+
 <section class="feature-area section-padding">
     <div class="container">           
         <div class="row d-flex justify-content-between">
