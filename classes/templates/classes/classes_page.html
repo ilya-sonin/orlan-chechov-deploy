@@ -62,32 +62,32 @@
         </div>
     </div>
 </section>
-<section class="students-area section-padding-both" id="reviews">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-                <div class="section-top text-center">
-                    <h2>{{ page.title_reviews }}</h2>
-                    {{ page.description|richtext }}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="classes-carousel owl-carousel owl-theme">
-                {% for rev in page.reviews.all %}
-                <div class="item">
-                    <div class="single-student text-center">
-                        {% image rev.image max-102x104 as img_rev %}
-                        <img src="{{ img_rev.url }}" alt="{{ rev.title }}">
-                        <h3>{{ rev.title }}</h3>
-                        {{ rev.description|richtext }}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>          
-    </div>
-</section>
+<!--<section class="students-area section-padding-both" id="reviews">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-6 offset-lg-3">-->
+<!--                <div class="section-top text-center">-->
+<!--                    <h2>{{ page.title_reviews }}</h2>-->
+<!--                    {{ page.description|richtext }}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!--<div class="row">-->
+        <!--    <div class="classes-carousel owl-carousel owl-theme">-->
+        <!--        {% for rev in page.reviews.all %}-->
+        <!--        <div class="item">-->
+        <!--            <div class="single-student text-center">-->
+        <!--                {% image rev.image max-102x104 as img_rev %}-->
+        <!--                <img src="{{ img_rev.url }}" alt="{{ rev.title }}">-->
+        <!--                <h3>{{ rev.title }}</h3>-->
+        <!--                {{ rev.description|richtext }}-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        {% endfor %}-->
+        <!--    </div>-->
+        <!--</div>          -->
+<!--    </div>-->
+<!--</section>-->
 {% banners %}
 {% footer %}
 {% endblock content %}
