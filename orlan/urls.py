@@ -17,7 +17,7 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
     url(r'^sitemap\.xml$', sitemap),
-
+    
     url(r'^form/', include('orlan_forms.urls')),
     url(r'', include(wagtail_urls)),
 ]
