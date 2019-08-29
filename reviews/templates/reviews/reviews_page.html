@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags head %}
 {% load wagtailcore_tags footer %}
+{% load static %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/review_form.js' %}"></script>
+{% endblock extra_js %}
 
 {% block content %}
-{% head %}
+{% comment %} {% head %} {% endcomment %}
 
-{% footer %}
+{% for user in reviews %}
+    {% if user.is_active %}
+        {{ user.name }}
+        {{ user.age }}
+        {{ user.review }}
+    {% endif %}
+{% endfor %}
+
+{% comment %} {% footer %} {% endcomment %}
 {% endblock content %}

@@ -4,13 +4,15 @@ from wagtail.core.models import Page
 
 class Reviews(models.Model):
 
-    name = models.CharField("Имя", max_length=100)
-    age = models.IntegerField("Сколько вам лет")
-    review = models.TextField("Отзыв")
+    name = models.CharField("Имя", max_length=100, default="Name")
+    age = models.IntegerField("Сколько вам лет", default=1)
+    review = models.TextField("Отзыв", default="Review")
+
+    is_active = models.BooleanField("Он активен", default=False)
 
     class Meta:
-        verbose_name = "Review"
-        verbose_name_plural = "Reviews"
+        verbose_name = "Отзыв"
+        verbose_name_plural = "Отзывы"
 
     def __str__(self):
         return self.name
