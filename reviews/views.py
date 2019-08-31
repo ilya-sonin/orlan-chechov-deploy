@@ -3,12 +3,15 @@ from django.http import HttpResponseForbidden
 
 from .models import Reviews
 
+
 def recive(request):
     if request.method == "POST":    
-        try:    
-            print(request.POST)
-            
-            reviews = Reviews()
+        try:
+            review = Reviews.objects.create_obj(
+                name=request.POST['name'],
+                age=int(request.POST['age']),
+                review=request.POST['review']
+            )
             return HttpResponse('OK')
         except:
             return HttpResponseForbidden()

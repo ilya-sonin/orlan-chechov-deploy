@@ -1,6 +1,36 @@
+import hashlib
+import random
+from django.conf import settings
+from django.core.mail import send_mail
+
 from django.db import models
 
 from wagtail.core.models import Page
+
+recipient_list = ['ilja.sonin2018@yandex.ru']
+
+
+class ReviewManager(models.Manager):
+    
+    def create_obj(self, name, age, review):
+        salt = hashlib.sha256(str(random.random()).encode('utf-8') + settings.SECRET_KEY.encode('utf-8')).hexdigest()
+        token = hashlib.sha1(salt.encode('utf-8') + name.encode('utf-8')).hexdigest()
+        
+        url = "http://localhost:8000/reviews/form/submit?token={}".format(token)
+
+        subject = "Новый отзыв"
+        message = "Пришел новый отзыв: \nИмя: {}\nВозраст: {}\nОтзыв: {}\n\nЧтобы выложить отзыв на сайт перейдите по ссылке {}".format(name, age, review, url)
+        send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list)
+
+        review_model = self.create(
+            name=name,
+            age=age,
+            review=review,
+            token=token
+        )
+
+        return review_model
+
 
 class Reviews(models.Model):
 
@@ -8,7 +38,11 @@ class Reviews(models.Model):
     age = models.IntegerField("Сколько вам лет", default=1)
     review = models.TextField("Отзыв", default="Review")
 
-    is_active = models.BooleanField("Он активен", default=False)
+    is_active = models.BooleanField("Он валидный", default=False)
+
+    token = models.CharField(max_length=40, default="Token")
+
+    objects = ReviewManager()
 
     class Meta:
         verbose_name = "Отзыв"
@@ -16,6 +50,7 @@ class Reviews(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class ReviewsPage(Page):
     
