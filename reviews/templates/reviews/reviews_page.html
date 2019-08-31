@@ -18,5 +18,12 @@
     {% endif %}
 {% endfor %}
 
+<form id="review-form" name="review-form">{% csrf_token %}
+    <input type="name" name="name">
+    <input type="age" name="age">
+    <textarea name="review" cols="30" rows="10"></textarea>
+    <button class="template-btn">Отправить</button>
+</form>
+
 {% comment %} {% footer %} {% endcomment %}
 {% endblock content %}
