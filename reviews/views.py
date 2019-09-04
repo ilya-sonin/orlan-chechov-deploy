@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponseForbidden
 
 from .models import Reviews
@@ -7,7 +7,7 @@ from .models import Reviews
 def recive(request):
     if request.method == "POST":    
         try:
-            review = Reviews.objects.create_obj(
+            Reviews.objects.create_obj(
                 name=request.POST['name'],
                 age=int(request.POST['age']),
                 review=request.POST['review']
@@ -19,4 +19,14 @@ def recive(request):
         response = render(request, '404.html')
         response.status_code = 404
         return response
+
+
+def submit(request):
+    if request.GET['token']:
+        Reviews.objects.confirm(token=request.GET['token'])
         
+        return redirect('/reviews/')
+    else:
+        response = render(request, '404.html')
+        response.status_code = 404
+        return response

@@ -16,10 +16,10 @@ class ReviewManager(models.Manager):
         salt = hashlib.sha256(str(random.random()).encode('utf-8') + settings.SECRET_KEY.encode('utf-8')).hexdigest()
         token = hashlib.sha1(salt.encode('utf-8') + name.encode('utf-8')).hexdigest()
         
-        url = "http://localhost:8000/reviews/form/submit?token={}".format(token)
+        url = "https://orlan-chechov.ru/reviews/form/submit?token={}".format(token)
 
         subject = "Новый отзыв"
-        message = "Пришел новый отзыв: \nИмя: {}\nВозраст: {}\nОтзыв: {}\n\nЧтобы выложить отзыв на сайт перейдите по ссылке {}".format(name, age, review, url)
+        message = "Пришел новый отзыв: \nИмя: {}\nВозраст: {}\nОтзыв: {}\n\nЧтобы выложить отзыв на сайт перейдите по ссылке: \n{}".format(name, age, review, url)
         send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list)
 
         review_model = self.create(
@@ -31,6 +31,12 @@ class ReviewManager(models.Manager):
 
         return review_model
 
+    def confirm(self, token):
+        review = self.get(token=token)
+        review.is_active = True
+        review.save()
+        
+        return review
 
 class Reviews(models.Model):
 
