@@ -10,6 +10,8 @@ from wagtail.core.fields import RichTextField
 from modelcluster.fields import ParentalKey
 from gallery.models import GalleryPage
 
+from reviews.models import Reviews
+
 
 class HomePage(Page):
     description = models.CharField("Описание баннера", 
@@ -96,6 +98,7 @@ class HomePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         context['gallery'] = GalleryPage.objects.child_of(self).live()
+        context['reviews'] = Reviews.objects.all()[:4]
         return context
 
     def __str__(self):
