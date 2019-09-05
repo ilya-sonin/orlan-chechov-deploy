@@ -1,6 +1,35 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
+<section class="students-area section-padding" id="reviews">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-top text-center">
+                    <h2>Что говорят о нас</h2>
+                    <p>Ниже представлены отзывы реальных учеников об обучении в нашей автошколе</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="classes-carousel owl-carousel owl-theme">
+                {% for review in reviews %}
+                {% if review.is_active %}
+                <div class="item">
+                    <div class="single-student text-center">
+                        <h3>{{ review.name }}</h3>
+                        <h4>{{ review.age }}</h4>
+                        <p class="pt-3">{{ review.review }}</p>
+                        <a href="/reviews/" class="template-btn">Все отзывы</a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>          
+    </div>
+</section>
+
 <section class="students-area section-padding">
     <div class="container">
         <div class="row">
