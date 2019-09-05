@@ -16,7 +16,7 @@ class ReviewManager(models.Manager):
         salt = hashlib.sha256(str(random.random()).encode('utf-8') + settings.SECRET_KEY.encode('utf-8')).hexdigest()
         token = hashlib.sha1(salt.encode('utf-8') + name.encode('utf-8')).hexdigest()
         
-        url = "https://orlan-chechov.ru/reviews/form/submit?token={}".format(token)
+        url = "https://orlan-chehov.ru/reviews/form/submit?token={}".format(token)
 
         subject = "Новый отзыв"
         message = "Пришел новый отзыв: \nИмя: {}\nВозраст: {}\nОтзыв: {}\n\nЧтобы выложить отзыв на сайт перейдите по ссылке: \n{}".format(name, age, review, url)
