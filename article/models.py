@@ -14,14 +14,12 @@ class ArticlePage(Page):
                                     default="text")
     date = models.DateField("Дата поста", default=datetime.date.today)
     body = RichTextField("Текст статьи", help_text="Пишите текст статьи", default="text")
-	embed = EmbedBlock()
     
     content_panels = [
         FieldPanel('title'),
         FieldPanel('preview_text'),
         FieldPanel('body'),
         FieldPanel('date'),
-        FieldPanel('embed'),
     ]
     
     class Meta:
