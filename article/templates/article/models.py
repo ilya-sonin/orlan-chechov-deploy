@@ -7,6 +7,7 @@ from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.embeds.blocks import EmbedBlock
 
+
 class ArticlePage(Page):
     preview_text = RichTextField("Превью текст",
                                     help_text="Сокращенное содержание статьи\n" \
@@ -14,8 +15,8 @@ class ArticlePage(Page):
                                     default="text")
     date = models.DateField("Дата поста", default=datetime.date.today)
     body = RichTextField("Текст статьи", help_text="Пишите текст статьи", default="text")
-	embed = EmbedBlock()
-    
+    embed = EmbedBlock()
+
     content_panels = [
         FieldPanel('title'),
         FieldPanel('preview_text'),

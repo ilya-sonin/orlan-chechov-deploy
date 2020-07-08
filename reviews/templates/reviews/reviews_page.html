@@ -37,7 +37,7 @@
                 <div class="single-student text-center">
                     <h3>{{ user.name }}</h3>
                     <h4>{{ user.age }} лет</h4>
-                    <p class="pt-3">{{ user.review }}</p>
+                    <p class="pt-3">{{ user.review|linebreaks }}</p>
                 </div>
             </div>
             {% endif %}
